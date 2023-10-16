@@ -1,4 +1,4 @@
-package com.example.pcria.payment.command.domain
+package com.example.pcria.order.command.domain
 
 import com.example.pcria.member.command.domain.MemberId
 import jakarta.persistence.AttributeOverride

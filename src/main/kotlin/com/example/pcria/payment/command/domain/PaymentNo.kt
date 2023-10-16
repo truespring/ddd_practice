@@ -16,4 +16,12 @@ class PaymentNo(
             return PaymentNo(number)
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
 }

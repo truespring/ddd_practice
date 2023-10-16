@@ -1,5 +1,6 @@
 spring:
   jpa:
+    open-in-view: false
     database: h2
     hibernate:
       ddl-auto: update
