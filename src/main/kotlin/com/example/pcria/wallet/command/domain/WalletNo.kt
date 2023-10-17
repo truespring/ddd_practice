@@ -7,12 +7,12 @@ import java.io.Serializable
 @Embeddable
 class WalletNo(
     @Column(name = "wallet_number")
-    private val number: String
+    private val number: Long
 ) : Serializable {
 
     companion object {
         @JvmStatic
-        fun of(number: String): WalletNo {
+        fun of(number: Long): WalletNo {
             return WalletNo(number)
         }
     }

@@ -1,6 +1,6 @@
-package com.example.pcria.payment.common.jpa
+package com.example.pcria.common.jpa
 
-import com.example.pcria.payment.common.model.Money
+import com.example.pcria.common.model.Money
 import jakarta.persistence.AttributeConverter
 
 class MoneyConverter: AttributeConverter<Money, Int> {

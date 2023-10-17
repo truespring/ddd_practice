@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface PaymentRepository : JpaRepository<Payment, PaymentNo> {
+    fun findByNumber(paymentNo: PaymentNo): Payment?
     fun findByOrderer(orderer: Orderer): Payment?
 }

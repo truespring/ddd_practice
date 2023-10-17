@@ -1,4 +1,4 @@
-package com.example.pcria.payment.common.model
+package com.example.pcria.common.model
 
 class Money(
     val value: Int

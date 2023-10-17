@@ -1,8 +1,8 @@
 package com.example.pcria.payment.command.domain
 
 import com.example.pcria.order.command.domain.Orderer
-import com.example.pcria.payment.common.jpa.MoneyConverter
-import com.example.pcria.payment.common.model.Money
+import com.example.pcria.common.jpa.MoneyConverter
+import com.example.pcria.common.model.Money
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
