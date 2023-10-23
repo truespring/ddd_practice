@@ -5,9 +5,9 @@ import jakarta.persistence.Embeddable
 import java.io.Serializable
 
 @Embeddable
-class WalletNo(
+data class WalletNo(
     @Column(name = "wallet_number")
-    private val number: Long
+    val number: Long
 ) : Serializable {
 
     companion object {

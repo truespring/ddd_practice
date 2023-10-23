@@ -7,7 +7,7 @@ import java.io.Serializable
 @Embeddable
 class MemberId(
     @Column(name = "member_id")
-    private val id: Long
+    val id: Long
 ): Serializable {
 
     companion object {

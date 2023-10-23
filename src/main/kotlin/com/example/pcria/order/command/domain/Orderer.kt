@@ -11,10 +11,10 @@ class Orderer(
     @AttributeOverrides(
         AttributeOverride(name = "id", column = Column(name = "orderer_id"))
     )
-    private val memberId: MemberId,
+    val memberId: MemberId,
 
     @Column(name = "orderer_name")
-    private val name: String
+    val name: String
 ) {
 
 }

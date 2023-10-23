@@ -10,10 +10,10 @@ import jakarta.persistence.*
 @Access(AccessType.FIELD)
 class Wallet(
     @EmbeddedId
-    val number: WalletNo,
+    private val number: WalletNo,
 
     @Embedded
-    val orderer: Orderer,
+    private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "total_amounts")

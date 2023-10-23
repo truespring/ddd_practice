@@ -11,10 +11,10 @@ import java.time.LocalDateTime
 @Access(AccessType.FIELD)
 class Payment(
     @EmbeddedId
-    val number: PaymentNo,
+    private val number: PaymentNo,
 
     @Embedded
-    val orderer: Orderer,
+    private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "amounts")
@@ -22,19 +22,30 @@ class Payment(
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    var state: PaymentState,
+    private var state: PaymentState,
 
     @Column(name = "method")
     @Enumerated(EnumType.STRING)
-    val method: PaymentMethod,
+    private val method: PaymentMethod,
 
     @Column(name = "date")
-    val date: LocalDateTime
+    private val date: LocalDateTime
 ) {
 
-    fun changePaymentState() {
-        verifyAlreadyCanceled()
-    }
+    constructor(
+        number: PaymentNo,
+        orderer: Orderer,
+        amounts: Money,
+        state: PaymentState,
+        method: PaymentMethod
+    ) : this(
+        number,
+        orderer,
+        amounts,
+        state,
+        method,
+        LocalDateTime.now()
+    )
 
     fun cancel() {
         verifyAlreadyCanceled()
@@ -47,7 +58,5 @@ class Payment(
         }
     }
 
-    private fun isAlreadyCanceled(): Boolean {
-        return this.state == PaymentState.CANCELED
-    }
+    private fun isAlreadyCanceled(): Boolean = this.state == PaymentState.CANCELED
 }
