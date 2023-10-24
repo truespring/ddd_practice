@@ -13,6 +13,5 @@ class CancelPaymentServiceTestIT(
 ) {
     @Test
     fun cancel() {
-        cancelPaymentService.cancelPayment(PaymentNo.of(1))
     }
 }

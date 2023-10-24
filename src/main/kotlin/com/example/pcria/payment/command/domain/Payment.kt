@@ -14,7 +14,7 @@ class Payment(
     private val number: PaymentNo,
 
     @Embedded
-    private val orderer: Orderer,
+    val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "amounts")

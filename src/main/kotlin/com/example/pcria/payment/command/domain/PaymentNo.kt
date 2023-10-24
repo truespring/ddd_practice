@@ -11,7 +11,6 @@ data class PaymentNo(
     @Column(name = "payment_number")
     val number: Long
 ) : Serializable {
-
     companion object {
         @JvmStatic
         fun of(number: Long): PaymentNo {
@@ -31,6 +30,7 @@ data class PaymentNo(
     }
 
     override fun equals(other: Any?): Boolean {
+        if (other?.javaClass != this.javaClass) return false
         return super.equals(other)
     }
 

@@ -19,7 +19,6 @@ class Wallet(
     @Column(name = "total_amounts")
     private val amounts: Money
 ) {
-
     fun addAmounts(amounts: Money) {
         this.amounts.plus(amounts)
     }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController
 class PaymentController(
     val moneyPaymentService: MoneyPaymentService
 ) {
-
     @PostMapping("/payment")
     fun payment(@RequestBody paymentRequest: PaymentRequest): PaymentNo =
         moneyPaymentService.moneyPayment(paymentRequest)

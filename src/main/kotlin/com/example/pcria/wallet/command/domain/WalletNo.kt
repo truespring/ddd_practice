@@ -18,6 +18,7 @@ data class WalletNo(
     }
 
     override fun equals(other: Any?): Boolean {
+        if (other?.javaClass != this.javaClass) return false
         return super.equals(other)
     }
 
