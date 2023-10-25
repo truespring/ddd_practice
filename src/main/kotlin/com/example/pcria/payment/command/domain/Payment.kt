@@ -18,7 +18,7 @@ class Payment(
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "amounts")
-    private val amounts: Money,
+    val amounts: Money,
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)

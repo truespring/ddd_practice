@@ -23,4 +23,8 @@ class Wallet(
         this.amounts.plus(amounts)
     }
 
+    fun minusAmounts(amounts: Money) {
+        this.amounts.minus(amounts)
+    }
+
 }

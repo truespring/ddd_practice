@@ -12,9 +12,4 @@ class Orderer(
         AttributeOverride(name = "id", column = Column(name = "orderer_id"))
     )
     val memberId: MemberId,
-
-    @Column(name = "orderer_name")
-    val name: String
-) {
-
-}
+)

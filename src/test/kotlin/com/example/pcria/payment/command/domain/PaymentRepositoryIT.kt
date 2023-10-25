@@ -19,8 +19,7 @@ class PaymentRepositoryIT{
         val payment = Payment(
             PaymentNo.of(1),
             Orderer(
-                MemberId.of(2),
-                "name"
+                MemberId.of(2)
             ),
             Money(1000),
             PaymentState.COMPLETED,
