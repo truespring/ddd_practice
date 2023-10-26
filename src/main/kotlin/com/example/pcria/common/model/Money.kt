@@ -13,13 +13,12 @@ class Money(
 
     fun plus(amounts: Money): Money = Money(amount + amounts.amount)
 
-    fun minus(amounts: Money): Money {
+    fun minus(amounts: Money) {
         when (isLessThan(amounts)) {
             true -> throw IllegalArgumentException("금액이 부족합니다.")
-            false -> return Money(amount - amounts.amount)
+            false -> Money(amount - amounts.amount)
         }
     }
 
     private fun isLessThan(amounts: Money): Boolean = amount < amounts.amount
-
 }
