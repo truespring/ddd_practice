@@ -9,7 +9,6 @@ class MemberId(
     @Column(name = "member_id")
     val id: Long
 ): Serializable {
-
     companion object {
         @JvmStatic
         fun of(id: Long): MemberId {

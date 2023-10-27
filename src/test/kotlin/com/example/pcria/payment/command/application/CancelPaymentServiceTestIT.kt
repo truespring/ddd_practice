@@ -17,6 +17,8 @@ class CancelPaymentServiceTestIT {
 
     @Test
     fun cancel() {
-        cancelPaymentService.cancelPayment(PaymentNo.of(1), Canceller.of(1))
+        cancelPaymentService.cancelPayment(
+            PaymentNo.of(1),
+            Canceller.of(1))
     }
 }

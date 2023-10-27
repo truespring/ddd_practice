@@ -17,14 +17,15 @@ class Wallet(
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "total_amounts")
-    private val amounts: Money
+    private val totalAmounts: Money
 ) {
+    fun totalAmounts(): Money = this.totalAmounts
+
     fun addAmounts(amounts: Money) {
-        this.amounts.plus(amounts)
+        this.totalAmounts.plus(amounts)
     }
 
     fun minusAmounts(amounts: Money) {
-        this.amounts.minus(amounts)
+        this.totalAmounts.minus(amounts)
     }
-
 }

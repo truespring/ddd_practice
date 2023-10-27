@@ -1,6 +1,6 @@
 package com.example.pcria.common.model
 
-class Money(
+data class Money(
     val amount: Int
 ) {
     companion object {
@@ -11,9 +11,9 @@ class Money(
         fun wons(value: Int): Money = Money(value)
     }
 
-    fun plus(amounts: Money): Money = Money(amount + amounts.amount)
+    operator fun plus(amounts: Money): Money = Money(amount + amounts.amount)
 
-    fun minus(amounts: Money) {
+    operator fun minus(amounts: Money) {
         when (isLessThan(amounts)) {
             true -> throw IllegalArgumentException("금액이 부족합니다.")
             false -> Money(amount - amounts.amount)

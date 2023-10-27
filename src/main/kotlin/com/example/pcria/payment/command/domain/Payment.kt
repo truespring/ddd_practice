@@ -6,7 +6,6 @@ import com.example.pcria.common.model.Money
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
-@Suppress("JpaAttributeTypeInspection")
 @Entity
 @Table(name = "payment")
 @Access(AccessType.FIELD)
@@ -15,11 +14,11 @@ class Payment(
     private val number: PaymentNo,
 
     @Embedded
-    val orderer: Orderer,
+    private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "amounts")
-    internal val amounts: Money,
+    private val amounts: Money,
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
@@ -32,7 +31,6 @@ class Payment(
     @Column(name = "date")
     private val date: LocalDateTime
 ) {
-
     constructor(
         number: PaymentNo,
         orderer: Orderer,
@@ -48,14 +46,17 @@ class Payment(
         LocalDateTime.now()
     )
 
+    fun amounts(): Money = this.amounts
+    fun orderer(): Orderer = this.orderer
+
     fun cancel() {
         verifyAlreadyCanceled()
         this.state = PaymentState.CANCELED
     }
 
     private fun verifyAlreadyCanceled() {
-        check(isAlreadyCanceled()) {
-            throw IllegalStateException("이미 취소된 결제입니다.")
+        when {
+            isAlreadyCanceled() -> throw IllegalStateException("이미 취소된 결제입니다.")
         }
     }
 
