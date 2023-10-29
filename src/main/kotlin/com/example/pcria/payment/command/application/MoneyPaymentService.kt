@@ -33,7 +33,7 @@ class MoneyPaymentService(
         )
 
         val wallet = walletRepository.findByOrderer(orderer) ?: Wallet(
-            WalletNo.of(orderer.memberId.id),
+            WalletNo.of(orderer.memberId.id()),
             orderer,
             Money.ZERO
         )

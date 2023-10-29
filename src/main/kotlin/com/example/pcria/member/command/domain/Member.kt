@@ -5,7 +5,7 @@ import com.example.pcria.common.model.EmailSet
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "`member`")
+@Table(name = "member")
 class Member(
     @EmbeddedId
     private val id: MemberId,
@@ -21,4 +21,5 @@ class Member(
     @Column(name = "emails")
     private val emails: EmailSet
 ) {
+    fun id(): MemberId = this.id
 }

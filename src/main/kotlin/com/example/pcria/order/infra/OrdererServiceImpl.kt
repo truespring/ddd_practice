@@ -12,7 +12,7 @@ class OrdererServiceImpl(
 ): OrdererService {
 
     override fun createOrderer(ordererMemberId: MemberId): Orderer {
-        val memberData = memberQueryService.getMemberData(ordererMemberId.id)
+        val memberData = memberQueryService.getMemberData(ordererMemberId.id())
         return Orderer(MemberId.of(memberData!!.id))
     }
 }
