@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface WalletRepository : JpaRepository<Wallet, WalletNo> {
-    fun findByOrderer(orderer: Orderer): Wallet?
+    fun findByOrderer(orderer: Orderer): Wallet
 }

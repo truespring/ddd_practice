@@ -20,9 +20,8 @@ class CancelPaymentService(
         if (!cancelPolicy.hasCancellationPermission(payment, canceller)) {
             throw NoCancellablePermission()
         }
-        val wallet = walletRepository.findByOrderer(payment.orderer())
-            .let { it ?: throw NoWalletException() }
-        wallet.minusAmounts(payment.amounts())
+        walletRepository.findByOrderer(payment.orderer())
+            .minusAmount(payment.amount())
         payment.cancel()
     }
 }

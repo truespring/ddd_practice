@@ -2,10 +2,8 @@ package com.example.pcria.payment.command.application
 
 import com.example.pcria.common.model.Money
 import com.example.pcria.order.command.domain.OrdererService
-import com.example.pcria.payment.command.domain.Payment
-import com.example.pcria.payment.command.domain.PaymentNo
-import com.example.pcria.payment.command.domain.PaymentRepository
-import com.example.pcria.payment.command.domain.PaymentState
+import com.example.pcria.payment.command.domain.*
+import com.example.pcria.payment.query.MoneyPaymentDto
 import com.example.pcria.wallet.command.domain.Wallet
 import com.example.pcria.wallet.command.domain.WalletNo
 import com.example.pcria.wallet.command.domain.WalletRepository
@@ -13,10 +11,11 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
-class MoneyPaymentService(
+class PaymentService(
     val paymentRepository: PaymentRepository,
     val walletRepository: WalletRepository,
-    val ordererService: OrdererService
+    val ordererService: OrdererService,
+    val moneyPaymentService: MoneyPaymentService
 ) {
 
     @Transactional
@@ -31,14 +30,10 @@ class MoneyPaymentService(
             PaymentState.COMPLETED,
             request.paymentMethod
         )
+        val wallet = walletRepository.findByOrderer(orderer)
 
-        val wallet = walletRepository.findByOrderer(orderer) ?: Wallet(
-            WalletNo.of(orderer.memberId.id()),
-            orderer,
-            Money.ZERO
-        )
-
-        wallet.addAmounts(request.amount)
+        moneyPaymentService.payment(MoneyPaymentDto.of(request.amount))
+        wallet.addAmount(request.amount)
         paymentRepository.save(payment)
         walletRepository.save(wallet)
         return paymentNo

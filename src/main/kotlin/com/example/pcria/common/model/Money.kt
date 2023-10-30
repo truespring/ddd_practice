@@ -11,14 +11,14 @@ data class Money(
         fun wons(value: Int): Money = Money(value)
     }
 
-    operator fun plus(amounts: Money): Money = Money(amount + amounts.amount)
+    operator fun plus(amount: Money): Money = Money(this.amount + amount.amount)
 
-    operator fun minus(amounts: Money) {
-        when (isLessThan(amounts)) {
+    operator fun minus(amount: Money) {
+        when (isLessThan(amount)) {
             true -> throw IllegalArgumentException("금액이 부족합니다.")
-            false -> Money(amount - amounts.amount)
+            false -> Money(this.amount - amount.amount)
         }
     }
 
-    private fun isLessThan(amounts: Money): Boolean = amount < amounts.amount
+    private fun isLessThan(amount: Money): Boolean = this.amount < amount.amount
 }

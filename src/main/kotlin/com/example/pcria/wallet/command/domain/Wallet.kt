@@ -21,11 +21,11 @@ class Wallet(
 ) {
     fun totalAmounts(): Money = this.totalAmounts
 
-    fun addAmounts(amounts: Money) {
-        this.totalAmounts.plus(amounts)
+    fun addAmount(amount: Money) {
+        this.totalAmounts.plus(amount)
     }
 
-    fun minusAmounts(amounts: Money) {
-        this.totalAmounts.minus(amounts)
+    fun minusAmount(amount: Money) {
+        this.totalAmounts.minus(amount)
     }
 }

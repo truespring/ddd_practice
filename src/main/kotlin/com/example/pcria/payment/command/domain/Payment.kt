@@ -17,8 +17,8 @@ class Payment(
     private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
-    @Column(name = "amounts")
-    private val amounts: Money,
+    @Column(name = "amount")
+    private val amount: Money,
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
@@ -34,19 +34,19 @@ class Payment(
     constructor(
         number: PaymentNo,
         orderer: Orderer,
-        amounts: Money,
+        amount: Money,
         state: PaymentState,
         method: PaymentMethod
     ) : this(
         number,
         orderer,
-        amounts,
+        amount,
         state,
         method,
         LocalDateTime.now()
     )
 
-    fun amounts(): Money = this.amounts
+    fun amount(): Money = this.amount
     fun orderer(): Orderer = this.orderer
 
     fun cancel() {
