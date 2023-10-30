@@ -5,19 +5,20 @@ import jakarta.persistence.Embeddable
 import java.io.Serializable
 
 @Embeddable
-class WalletNo(
+data class WalletNo(
     @Column(name = "wallet_number")
-    private val number: String
+    val number: Long
 ) : Serializable {
 
     companion object {
         @JvmStatic
-        fun of(number: String): WalletNo {
+        fun of(number: Long): WalletNo {
             return WalletNo(number)
         }
     }
 
     override fun equals(other: Any?): Boolean {
+        if (other?.javaClass != this.javaClass) return false
         return super.equals(other)
     }
 

@@ -7,12 +7,13 @@ import java.io.Serializable
 @Embeddable
 class MemberId(
     @Column(name = "member_id")
-    private val id: String
+    private val id: Long
 ): Serializable {
+    fun id(): Long = this.id
 
     companion object {
         @JvmStatic
-        fun of(id: String): MemberId {
+        fun of(id: Long): MemberId {
             return MemberId(id)
         }
     }

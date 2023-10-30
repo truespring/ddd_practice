@@ -1,8 +1,8 @@
 package com.example.pcria.wallet.command.domain
 
 import com.example.pcria.order.command.domain.Orderer
-import com.example.pcria.payment.common.jpa.MoneyConverter
-import com.example.pcria.payment.common.model.Money
+import com.example.pcria.common.jpa.MoneyConverter
+import com.example.pcria.common.model.Money
 import jakarta.persistence.*
 
 @Entity
@@ -10,18 +10,22 @@ import jakarta.persistence.*
 @Access(AccessType.FIELD)
 class Wallet(
     @EmbeddedId
-    val number: WalletNo,
+    private val number: WalletNo,
 
     @Embedded
-    val orderer: Orderer,
+    private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "total_amounts")
-    private val amounts: Money
+    private val totalAmounts: Money
 ) {
+    fun totalAmounts(): Money = this.totalAmounts
 
-    fun addAmounts(amounts: Money) {
-        this.amounts.plus(amounts)
+    fun addAmount(amount: Money) {
+        this.totalAmounts.plus(amount)
     }
 
+    fun minusAmount(amount: Money) {
+        this.totalAmounts.minus(amount)
+    }
 }

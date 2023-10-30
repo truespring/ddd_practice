@@ -1,8 +1,8 @@
 package com.example.pcria.payment.command.domain
 
 import com.example.pcria.order.command.domain.Orderer
-import com.example.pcria.payment.common.jpa.MoneyConverter
-import com.example.pcria.payment.common.model.Money
+import com.example.pcria.common.jpa.MoneyConverter
+import com.example.pcria.common.model.Money
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -11,30 +11,43 @@ import java.time.LocalDateTime
 @Access(AccessType.FIELD)
 class Payment(
     @EmbeddedId
-    val number: PaymentNo,
+    private val number: PaymentNo,
 
     @Embedded
-    val orderer: Orderer,
+    private val orderer: Orderer,
 
     @Convert(converter = MoneyConverter::class)
-    @Column(name = "amounts")
-    private val amounts: Money,
+    @Column(name = "amount")
+    private val amount: Money,
 
     @Column(name = "state")
     @Enumerated(EnumType.STRING)
-    var state: PaymentState,
+    private var state: PaymentState,
 
     @Column(name = "method")
     @Enumerated(EnumType.STRING)
-    val method: PaymentMethod,
+    private val method: PaymentMethod,
 
     @Column(name = "date")
-    val date: LocalDateTime
+    private val date: LocalDateTime
 ) {
+    constructor(
+        number: PaymentNo,
+        orderer: Orderer,
+        amount: Money,
+        state: PaymentState,
+        method: PaymentMethod
+    ) : this(
+        number,
+        orderer,
+        amount,
+        state,
+        method,
+        LocalDateTime.now()
+    )
 
-    fun changePaymentState() {
-        verifyAlreadyCanceled()
-    }
+    fun amount(): Money = this.amount
+    fun orderer(): Orderer = this.orderer
 
     fun cancel() {
         verifyAlreadyCanceled()
@@ -42,12 +55,10 @@ class Payment(
     }
 
     private fun verifyAlreadyCanceled() {
-        if (isAlreadyCanceled()) {
-            throw IllegalStateException("이미 취소된 결제입니다.")
+        when {
+            isAlreadyCanceled() -> throw IllegalStateException("이미 취소된 결제입니다.")
         }
     }
 
-    private fun isAlreadyCanceled(): Boolean {
-        return this.state == PaymentState.CANCELED
-    }
+    private fun isAlreadyCanceled(): Boolean = this.state == PaymentState.CANCELED
 }
