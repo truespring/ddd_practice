@@ -21,7 +21,7 @@ data class PaymentNo(
         fun nextPaymentNo(): PaymentNo {
             return PaymentNo(
                 String.format(
-                    "%tY%<tm%<td%<tH-%d",
+                    "%tY%<tm%<td%<tH%d",
                     Date(),
                     ThreadLocalRandom.current().nextInt(900000) + 100000
                 ).toLong()
