@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class MemberQueryService(
-    val memberDataDao: MemberDataDao
+    val memberDataDao: MemberDataDao,
 ) {
-    fun getMemberData(id: Long): MemberData = memberDataDao.findById(id).let {
-        throw NoMemberException()
-    }
+    fun getMemberData(id: Long): MemberData = memberDataDao.findById(id).orElseThrow { NoMemberException() }
 }

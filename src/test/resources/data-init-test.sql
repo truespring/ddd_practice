@@ -8,4 +8,4 @@ insert into member (member_id, blocked, name, emails, password) values (3, false
 
 insert into payment (payment_number, amount, date, method, orderer_id, state) values (1, 10000, now(), 'CARD', 1, 'COMPLETED');
 
-insert into wallet (wallet_number, total_amounts, orderer_id) values (1, 10000, 1);
+insert into wallet (wallet_number, total_amounts, member_id) values (1, 10000, 1);

@@ -10,12 +10,15 @@ import jakarta.persistence.Table
 class MemberData(
     @Id
     @Column(name = "member_id")
-    val id: Long,
+    private val id: Long,
 
     @Column(name = "name")
-    val name: String,
+    private val name: String,
 
     @Column(name = "blocked")
-    val blocked: Boolean
+    private val blocked: Boolean
 ) {
+    fun id(): Long = this.id
+    fun name(): String = this.name
+    fun blocked(): Boolean = this.blocked
 }

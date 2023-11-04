@@ -9,4 +9,5 @@ class Password(
     private val value: String
 ) {
     fun match(password: String): Boolean = this.value == password
+    fun value(): String = this.value
 }

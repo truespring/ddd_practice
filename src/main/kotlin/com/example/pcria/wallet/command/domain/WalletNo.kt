@@ -3,6 +3,8 @@ package com.example.pcria.wallet.command.domain
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import java.io.Serializable
+import java.util.*
+import java.util.concurrent.ThreadLocalRandom
 
 @Embeddable
 data class WalletNo(
@@ -14,6 +16,17 @@ data class WalletNo(
         @JvmStatic
         fun of(number: Long): WalletNo {
             return WalletNo(number)
+        }
+
+        @JvmStatic
+        fun nextWalletNo(): WalletNo {
+            return WalletNo(
+                String.format(
+                    "%tY%<tm%<td%<tH%d",
+                    Date(),
+                    ThreadLocalRandom.current().nextInt(800000) + 100000
+                ).toLong()
+            )
         }
     }
 
