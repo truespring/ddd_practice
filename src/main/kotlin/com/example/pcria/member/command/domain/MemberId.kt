@@ -8,7 +8,7 @@ import java.io.Serializable
 class MemberId(
     @Column(name = "member_id")
     private val id: Long
-): Serializable {
+) : Serializable {
     fun id(): Long = this.id
 
     companion object {

@@ -1,8 +1,10 @@
 package com.example.pcria.common.model
 
 data class Money(
-    val amount: Int
+    private val amount: Int
 ) {
+    fun amount(): Int = this.amount
+
     companion object {
         @JvmStatic
         val ZERO = wons(0)

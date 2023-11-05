@@ -19,7 +19,12 @@ class Member(
 
     @Convert(converter = EmailSetConverter::class)
     @Column(name = "emails")
-    private val emails: EmailSet
+    private val emails: EmailSet,
+
+    @Column(name = "activated")
+    private val activated: Boolean = false,
 ) {
     fun id(): MemberId = this.id
+    fun name(): String = this.name
+    fun password(): Password = this.password
 }

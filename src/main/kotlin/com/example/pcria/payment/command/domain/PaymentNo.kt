@@ -9,8 +9,9 @@ import java.util.concurrent.ThreadLocalRandom
 @Embeddable
 data class PaymentNo(
     @Column(name = "payment_number")
-    val number: Long
+    private val number: Long
 ) : Serializable {
+    fun number(): Long = this.number
     companion object {
         @JvmStatic
         fun of(number: Long): PaymentNo {

@@ -20,7 +20,7 @@ class CancelPaymentService(
         if (!cancelPolicy.hasCancellationPermission(payment, canceller)) {
             throw NoCancellablePermission()
         }
-        walletRepository.findByMemberId(payment.orderer().memberId)
+        walletRepository.findByMemberId(payment.orderer().memberId())
             .let { it ?: throw NoWalletException() }
             .minusAmount(payment.amount())
         payment.cancel()

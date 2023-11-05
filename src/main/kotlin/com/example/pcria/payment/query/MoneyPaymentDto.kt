@@ -7,6 +7,6 @@ data class MoneyPaymentDto(
 ) {
     companion object {
         @JvmStatic
-        fun of(value: Money): MoneyPaymentDto = MoneyPaymentDto(value.amount)
+        fun of(value: Money): MoneyPaymentDto = MoneyPaymentDto(value.amount())
     }
 }

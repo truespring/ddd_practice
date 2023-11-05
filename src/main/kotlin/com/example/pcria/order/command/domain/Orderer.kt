@@ -11,5 +11,7 @@ class Orderer(
     @AttributeOverrides(
         AttributeOverride(name = "id", column = Column(name = "orderer_id"))
     )
-    val memberId: MemberId,
-)
+    private val memberId: MemberId,
+) {
+    fun memberId(): MemberId = this.memberId
+}
