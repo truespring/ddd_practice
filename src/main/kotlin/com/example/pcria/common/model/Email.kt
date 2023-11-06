@@ -7,6 +7,5 @@ data class Email(
         @JvmStatic
         fun of(address: String): Email = Email(address)
     }
-
     fun address(): String = this.address
 }

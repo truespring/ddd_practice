@@ -1,4 +1,4 @@
-package com.example.pcria.payment.query
+package com.example.pcria.payment.query.dto
 
 import com.example.pcria.common.model.Money
 

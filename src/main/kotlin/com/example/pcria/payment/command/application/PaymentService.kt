@@ -3,7 +3,7 @@ package com.example.pcria.payment.command.application
 import com.example.pcria.common.model.Money
 import com.example.pcria.order.command.domain.OrdererService
 import com.example.pcria.payment.command.domain.*
-import com.example.pcria.payment.query.MoneyPaymentDto
+import com.example.pcria.payment.query.dto.MoneyPaymentDto
 import com.example.pcria.wallet.command.domain.Wallet
 import com.example.pcria.wallet.command.domain.WalletNo
 import com.example.pcria.wallet.command.domain.WalletRepository
