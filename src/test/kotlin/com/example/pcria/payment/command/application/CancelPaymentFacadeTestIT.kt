@@ -10,14 +10,14 @@ import org.springframework.test.context.jdbc.Sql
 
 @SpringBootTest
 @Sql("classpath:data-init-test.sql")
-class CancelPaymentServiceTestIT {
+class CancelPaymentFacadeTestIT {
 
     @Autowired
-    private lateinit var cancelPaymentService: CancelPaymentService
+    private lateinit var paymentFacade: PaymentFacade
 
     @Test
     fun cancel() {
-        cancelPaymentService.cancelPayment(
+        paymentFacade.cancelPayment(
             PaymentNo.of(1),
             Canceller.of(1))
     }

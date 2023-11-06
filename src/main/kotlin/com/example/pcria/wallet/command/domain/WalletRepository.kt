@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface WalletRepository : JpaRepository<Wallet, WalletNo> {
     fun findByMemberId(memberId: MemberId): Wallet?
+    fun save(wallet: Wallet): Wallet
 }

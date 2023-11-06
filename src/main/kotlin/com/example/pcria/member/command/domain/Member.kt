@@ -25,6 +25,7 @@ class Member(
     private val activated: Boolean = false,
 ) {
     fun id(): MemberId = this.id
+    fun memberId(): Long = this.id.id()
     fun name(): String = this.name
     fun password(): Password = this.password
 }

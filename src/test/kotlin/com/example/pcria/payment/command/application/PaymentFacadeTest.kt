@@ -11,14 +11,14 @@ import org.springframework.test.context.jdbc.Sql
 @SpringBootTest
 @Sql("classpath:data-init-test.sql")
 
-class PaymentServiceTest {
+class PaymentFacadeTest {
 
     @Autowired
-    private lateinit var paymentService: PaymentService
+    private lateinit var paymentFacade: PaymentFacade
 
     @Test
     fun moneyPayment() {
-        paymentService.moneyPayment(
+        paymentFacade.payment(
             PaymentRequest(
                 MemberId.of(2),
                 Money.wons(1000),

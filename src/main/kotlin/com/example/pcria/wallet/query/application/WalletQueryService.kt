@@ -13,12 +13,6 @@ import org.springframework.transaction.annotation.Transactional
 class WalletQueryService(
     private val walletRepository: WalletRepository
 ) {
-
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
-    fun getWalletFromWalletNo(walletNo: WalletNo): Wallet {
-        return walletRepository.findById(walletNo).orElseThrow { NoWalletException() }
-    }
-
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
     fun getWalletFromMemberId(memberId: MemberId): Wallet {
         return walletRepository.findByMemberId(memberId) ?: throw NoWalletException()

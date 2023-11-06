@@ -10,7 +10,7 @@ import jakarta.persistence.*
 @Access(AccessType.FIELD)
 class Wallet(
     @EmbeddedId
-    private val number: WalletNo,
+    private val walletNo: WalletNo,
 
     @Embedded
     private val memberId: MemberId,

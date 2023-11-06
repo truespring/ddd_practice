@@ -12,6 +12,7 @@ data class PaymentNo(
     private val number: Long
 ) : Serializable {
     fun number(): Long = this.number
+
     companion object {
         @JvmStatic
         fun of(number: Long): PaymentNo {

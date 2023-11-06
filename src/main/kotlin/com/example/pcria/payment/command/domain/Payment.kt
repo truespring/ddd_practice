@@ -46,8 +46,8 @@ class Payment(
         LocalDateTime.now()
     )
 
-    fun amount(): Money = this.amount
-    fun orderer(): Orderer = this.orderer
+    fun amount() = this.amount
+    fun orderer() = this.orderer
 
     fun cancel() {
         verifyAlreadyCanceled()
