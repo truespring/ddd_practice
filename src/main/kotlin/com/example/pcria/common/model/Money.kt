@@ -1,7 +1,7 @@
 package com.example.pcria.common.model
 
 data class Money(
-    private val amount: Int
+    private var amount: Int
 ) {
     fun amount(): Int = this.amount
 
@@ -13,14 +13,17 @@ data class Money(
         fun wons(value: Int): Money = Money(value)
     }
 
-    operator fun plus(amount: Money): Money = Money(this.amount + amount.amount)
+    operator fun plus(value: Money) {
+        this.amount += value.amount
+    }
 
     operator fun minus(amount: Money) {
         when (isLessThan(amount)) {
             true -> throw IllegalArgumentException("금액이 부족합니다.")
-            false -> Money(this.amount - amount.amount)
+            false -> this.amount -= amount.amount
         }
     }
-
+    operator fun times(percent: Double) = (this.amount * percent).toInt()
+    operator fun times(quantity: Int) = this.amount * quantity
     private fun isLessThan(amount: Money): Boolean = this.amount < amount.amount
 }

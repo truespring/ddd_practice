@@ -15,7 +15,7 @@ class SecurityCancelPolicy : CancelPolicy {
         isCurrentUserAdminRole() || isCancellerPayment(payment, canceller)
 
     private fun isCancellerPayment(payment: Payment, canceller: Canceller): Boolean =
-        payment.orderer().memberId().id() == canceller.memberId
+        payment.memberId().id() == canceller.memberId
 
     private fun isCurrentUserAdminRole(): Boolean {
         val context: SecurityContext = SecurityContextHolder.getContext() ?: return false

@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import java.time.LocalDateTime
 
 @DataJpaTest
-class PaymentRepositoryIT{
+class PaymentRepositoryIT {
 
     @Autowired
     private val paymentRepository: PaymentRepository? = null
@@ -18,9 +18,7 @@ class PaymentRepositoryIT{
     fun save() {
         val payment = Payment(
             PaymentNo.of(1),
-            Orderer(
-                MemberId.of(2)
-            ),
+            MemberId.of(2),
             Money(1000),
             PaymentState.COMPLETED,
             PaymentMethod.CARD,

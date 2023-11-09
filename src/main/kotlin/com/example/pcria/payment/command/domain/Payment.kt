@@ -1,8 +1,8 @@
 package com.example.pcria.payment.command.domain
 
-import com.example.pcria.order.command.domain.Orderer
 import com.example.pcria.common.jpa.MoneyConverter
 import com.example.pcria.common.model.Money
+import com.example.pcria.member.command.domain.MemberId
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -14,7 +14,7 @@ class Payment(
     private val number: PaymentNo,
 
     @Embedded
-    private val orderer: Orderer,
+    private val memberId: MemberId,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "amount")
@@ -33,13 +33,13 @@ class Payment(
 ) {
     constructor(
         number: PaymentNo,
-        orderer: Orderer,
+        memberId: MemberId,
         amount: Money,
         state: PaymentState,
         method: PaymentMethod
     ) : this(
         number,
-        orderer,
+        memberId,
         amount,
         state,
         method,
@@ -47,7 +47,7 @@ class Payment(
     )
 
     fun amount() = this.amount
-    fun orderer() = this.orderer
+    fun memberId() = this.memberId
 
     fun cancel() {
         verifyAlreadyCanceled()

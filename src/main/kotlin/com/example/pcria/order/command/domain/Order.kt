@@ -7,6 +7,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "order")
+//@Access(AccessType.FIELD)
 class Order(
     @EmbeddedId
     private val orderNo: OrderNo,
@@ -20,7 +21,7 @@ class Order(
         joinColumns = [JoinColumn(name = "order_number")]
     )
     @OrderColumn(name = "line_idx")
-    private var orderLines: List<OrderLine>,
+    private val orderLines: List<OrderLine>,
 
     @Convert(converter = MoneyConverter::class)
     @Column(name = "total_amounts")
