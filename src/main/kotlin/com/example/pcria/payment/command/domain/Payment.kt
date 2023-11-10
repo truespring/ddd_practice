@@ -49,7 +49,7 @@ class Payment(
     fun amount() = this.amount
     fun memberId() = this.memberId
 
-    fun cancel() {
+    fun cancelPayment() {
         verifyAlreadyCanceled()
         this.state = PaymentState.CANCELED
     }

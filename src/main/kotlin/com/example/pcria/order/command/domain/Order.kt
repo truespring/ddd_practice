@@ -6,8 +6,8 @@ import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "order")
-//@Access(AccessType.FIELD)
+@Table(name = "purchase_order")
+@Access(AccessType.FIELD)
 class Order(
     @EmbeddedId
     private val orderNo: OrderNo,
@@ -34,4 +34,29 @@ class Order(
     @Column(name = "order_date")
     private val orderDate: LocalDateTime
 ) {
+    fun orderNo() = this.orderNo
+
+    fun orderPrepare() {
+        this.state = OrderState.PREPARING
+    }
+
+    fun cancelOrder() {
+        verifyPreparing()
+        verifyAlreadyCanceled()
+        this.state = OrderState.CANCELLED
+    }
+
+    private fun verifyAlreadyCanceled() {
+        when {
+            isAlreadyCanceled() -> throw IllegalStateException("이미 취소된 주문입니다.")
+        }
+    }
+
+    private fun verifyPreparing() {
+        when {
+            isPreparing() -> throw IllegalStateException("이미 준비중인 주문입니다.")
+        }
+    }
+    private fun isAlreadyCanceled() = this.state == OrderState.CANCELLED
+    private fun isPreparing() = this.state == OrderState.PREPARING
 }

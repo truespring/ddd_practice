@@ -40,7 +40,7 @@ class PaymentFacade(
         if (!cancelPolicy.hasCancellationPermission(payment, canceller)) {
             throw NoCancellablePermission()
         }
-        payment.cancel()
+        payment.cancelPayment()
         walletQueryService.getWalletFromMemberId(payment.memberId())
             .minusAmount(payment.amount())
     }
