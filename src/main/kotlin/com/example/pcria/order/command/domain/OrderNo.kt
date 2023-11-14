@@ -10,4 +10,17 @@ data class OrderNo(
     private val id: Long
 ) : Serializable {
     fun id(): Long = this.id
+
+    companion object {
+        @JvmStatic
+        fun nextOrderNo(): OrderNo {
+            return OrderNo(
+                String.format(
+                    "%tY%<tm%<td%<tH%d",
+                    java.util.Date(),
+                    java.util.concurrent.ThreadLocalRandom.current().nextInt(900000) + 100000
+                ).toLong()
+            )
+        }
+    }
 }

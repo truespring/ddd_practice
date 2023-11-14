@@ -7,4 +7,6 @@ class Canceller(
         @JvmStatic
         fun of(memberId: Long): Canceller = Canceller(memberId)
     }
+
+    fun memberId(): Long = this.memberId
 }

@@ -1,7 +1,7 @@
 package com.example.pcria.wallet.query.application
 
 import com.example.pcria.member.command.domain.MemberId
-import com.example.pcria.wallet.NoWalletException
+import com.example.pcria.wallet.NotFoundWalletException
 import com.example.pcria.wallet.command.domain.Wallet
 import com.example.pcria.wallet.command.domain.WalletRepository
 import org.springframework.stereotype.Component
@@ -13,6 +13,6 @@ class WalletQueryService(
 ) {
     @Transactional
     fun getWalletFromMemberId(memberId: MemberId): Wallet {
-        return walletRepository.findByMemberId(memberId) ?: throw NoWalletException()
+        return walletRepository.findByMemberId(memberId) ?: throw NotFoundWalletException()
     }
 }

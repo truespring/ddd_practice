@@ -34,29 +34,23 @@ class Order(
     @Column(name = "order_date")
     private val orderDate: LocalDateTime
 ) {
+    constructor(
+        orderNo: OrderNo,
+        orderer: Orderer,
+        orderLines: List<OrderLine>,
+        totalAmounts: Money,
+    ) : this(
+        orderNo,
+        orderer,
+        orderLines,
+        totalAmounts,
+        OrderState.WAITING,
+        LocalDateTime.now()
+    )
+
     fun orderNo() = this.orderNo
 
-    fun orderPrepare() {
+    fun prepare() {
         this.state = OrderState.PREPARING
     }
-
-    fun cancelOrder() {
-        verifyPreparing()
-        verifyAlreadyCanceled()
-        this.state = OrderState.CANCELLED
-    }
-
-    private fun verifyAlreadyCanceled() {
-        when {
-            isAlreadyCanceled() -> throw IllegalStateException("이미 취소된 주문입니다.")
-        }
-    }
-
-    private fun verifyPreparing() {
-        when {
-            isPreparing() -> throw IllegalStateException("이미 준비중인 주문입니다.")
-        }
-    }
-    private fun isAlreadyCanceled() = this.state == OrderState.CANCELLED
-    private fun isPreparing() = this.state == OrderState.PREPARING
 }

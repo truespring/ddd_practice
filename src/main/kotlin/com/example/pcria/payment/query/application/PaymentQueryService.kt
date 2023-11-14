@@ -1,6 +1,6 @@
 package com.example.pcria.payment.query.application
 
-import com.example.pcria.payment.command.NoPaymentException
+import com.example.pcria.payment.command.NotFoundPaymentException
 import com.example.pcria.payment.command.domain.Payment
 import com.example.pcria.payment.command.domain.PaymentNo
 import com.example.pcria.payment.command.domain.PaymentRepository
@@ -13,6 +13,6 @@ class PaymentQueryService(
 ) {
     @Transactional
     fun getPaymentFromPaymentNo(paymentNo: PaymentNo): Payment {
-        return paymentRepository.findById(paymentNo).orElseThrow { NoPaymentException() }
+        return paymentRepository.findById(paymentNo).orElseThrow { NotFoundPaymentException() }
     }
 }
