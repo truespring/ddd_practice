@@ -65,6 +65,17 @@ class PaymentFacadeTest {
     }
 
     @Test
+    @DisplayName("Non-Cancelable Payment by Other Member")
+    fun nonCancelablePaymentOtherMember() {
+        assertThrows<NoCancellablePermission> {
+            paymentFacade.cancelPayment(
+                PaymentNo.of(1),
+                Canceller.of(2)
+            )
+        }
+    }
+
+    @Test
     @DisplayName("Non-Cancelable Payment")
     fun nonCancelablePayment() {
         assertThrows<IllegalArgumentException> {
