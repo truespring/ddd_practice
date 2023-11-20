@@ -24,6 +24,6 @@ data class Money(
         }
     }
     operator fun times(percent: Double) = (this.amount * percent).toInt()
-    operator fun times(quantity: Int) = this.amount * quantity
+    operator fun times(quantity: Int) = wons(this.amount * quantity)
     private fun isLessThan(amount: Money): Boolean = this.amount < amount.amount
 }

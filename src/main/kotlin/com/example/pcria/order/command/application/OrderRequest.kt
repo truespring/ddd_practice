@@ -5,8 +5,8 @@ import com.example.pcria.order.command.domain.OrderNo
 
 class OrderRequest(
     private val ordererMemberId: MemberId,
-    private val orderId: OrderNo
+    private val orderProducts: List<OrderProduct>
 ) {
     fun memberId(): MemberId = this.ordererMemberId
-    fun orderId(): OrderNo = this.orderId
+    fun orderProducts(): List<OrderProduct> = this.orderProducts
 }

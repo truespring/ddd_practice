@@ -2,7 +2,7 @@ package com.example.pcria.order.command.domain
 
 import com.example.pcria.common.jpa.MoneyConverter
 import com.example.pcria.common.model.Money
-import com.example.pcria.product.command.domain.ProductId
+import com.example.pcria.catalog.command.domain.product.ProductId
 import jakarta.persistence.Column
 import jakarta.persistence.Convert
 import jakarta.persistence.Embeddable
@@ -28,5 +28,16 @@ class OrderLine(
     fun price() = this.price
     fun quantity() = this.quantity
     fun amounts() = this.amounts
-    fun calculateAmounts() = this.price.times(this.quantity)
+    private fun calculateAmounts() = this.price.times(this.quantity)
+
+    constructor(
+        productId: ProductId,
+        price: Money,
+        quantity: Int
+    ) : this(
+        productId,
+        price,
+        quantity,
+        price.times(quantity)
+    )
 }
